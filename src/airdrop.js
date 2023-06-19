@@ -31,9 +31,6 @@ const getWalletBalance = async (UserPubKey) => {
 
     // Make a wallet (keypair) from privateKey and get its balance
     const myWallet = await Keypair.fromSecretKey(privateKey);
-    // const walletBalance = await connection.getBalance(
-    //     new PublicKey(newPair.publicKey)
-    // );
     const walletBalance = await connection.getBalance(
       new PublicKey(UserPubKey)
     );
@@ -57,11 +54,6 @@ const airDropSol = async (UserPubKey) => {
       new PublicKey(UserPubKey),
       2 * LAMPORTS_PER_SOL
     );
-    // console.log(new PublicKey(myWallet.publicKey))
-    // const fromAirDropSignature = await connection.requestAirdrop(
-    //     (UserPubKey),
-    //     2 * LAMPORTS_PER_SOL
-    // );
     await connection.confirmTransaction(fromAirDropSignature);
   } catch (err) {
     console.log(err);
